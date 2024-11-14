@@ -1,0 +1,16 @@
+[Unit]
+Description=Docker Container Crash Monitor
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/docker-monitor.sh
+Restart=always
+RestartSec=10
+User=root
+StandardOutput=append:/var/log/docker-monitor.log
+StandardError=append:/var/log/docker-monitor.log
+
+[Install]
+WantedBy=multi-user.target
